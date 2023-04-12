@@ -1,47 +1,109 @@
 <template>
-    <div class="wrapper">
-        <div class="board">
-            <div class="hex hex1">
-                <div class="rec rec1"></div>
-                <div class="rec rec2"></div>
-                <div class="rec rec3"></div>
-            </div>
-            <div class="hex hex2">
-                <div class="rec rec1"></div>
-                <div class="rec rec2"></div>
-                <div class="rec rec3"></div>
-            </div>
-            <div class="hex hex3">
-                <div class="rec rec1"></div>
-                <div class="rec rec2"></div>
-                <div class="rec rec3"></div>
-            </div>
-            <div class="hex hex4">
-                <div class="rec rec1"></div>
-                <div class="rec rec2"></div>
-                <div class="rec rec3"></div>
-            </div>
-            <div class="hex hex5">
-                <div class="rec rec1"></div>
-                <div class="rec rec2"></div>
-                <div class="rec rec3"></div>
-            </div>
-            <div class="hex hex6">
-                <div class="rec rec1"></div>
-                <div class="rec rec2"></div>
-                <div class="rec rec3"></div>
-            </div>
-            <div class="hex hex7">
-                <div class="rec rec1"></div>
-                <div class="rec rec2"></div>
-                <div class="rec rec3"></div>
-            </div>
-        </div>
+  <div class="wrapper">
+    <div class="board" @click="unselect()">
+      <div class="hex pos11" id="hex11" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex pos12" id="hex12" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex pos21" id="hex21" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex pos22" id="hex22" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex pos23" id="hex23" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex pos31" id="hex31" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex pos32" id="hex32" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="pce pos12">
+        <div class="rec rec1 color11"></div>
+        <div class="rec rec2 color21"></div>
+        <div class="rec rec3 color31"></div>
+      </div>
+      <div class="pce pos21">
+        <div class="rec rec1 color11"></div>
+        <div class="rec rec2 color21"></div>
+        <div class="rec rec3 color32"></div>
+      </div>
+      <div class="pce pos22">
+        <div class="rec rec1 color11"></div>
+        <div class="rec rec2 color22"></div>
+        <div class="rec rec3 color31"></div>
+      </div>
+      <div class="pce pos31">
+        <div class="rec rec1 color11"></div>
+        <div class="rec rec2 color22"></div>
+        <div class="rec rec3 color32"></div>
+      </div>
+      <div class="pce pos11">
+        <div class="rec rec1 color12"></div>
+        <div class="rec rec2 color21"></div>
+        <div class="rec rec3 color31"></div>
+      </div>
+      <div class="pce pos23">
+        <div class="rec rec1 color12"></div>
+        <div class="rec rec2 color21"></div>
+        <div class="rec rec3 color32"></div>
+      </div>
+      <div class="pce pos32">
+        <div class="rec rec1 color12"></div>
+        <div class="rec rec2 color22"></div>
+        <div class="rec rec3 color31"></div>
+      </div>
+      <div class="pce">
+        <div class="rec rec1 color12"></div>
+        <div class="rec rec2 color22"></div>
+        <div class="rec rec3 color32"></div>
+      </div>
     </div>
+  </div>
 </template>
 
-<style scoped>
+<script>
+export default {
+  methods: {
+    unselect: function () {
+      document.querySelectorAll('.selected').forEach((element) => {
+        element.classList.remove('selected')
+      })
+      console.log('unselect')
+    },
+    select: function (event) {
+      document.querySelectorAll('.selected').forEach((element) => {
+        element.classList.remove('selected')
+      })
+      console.log('select')
+      const item = event.target.parentElement
+      item.classList.add('selected')
+    },
+  }
+}
+</script>
 
+<style></style>
+
+<style scoped>
 .wrapper {
   position: absolute;
   inset: 10% 10% 10% 10%;
@@ -55,13 +117,30 @@
 
 .board {
   --sqrt3: 1.732051;
-  --hex-height: 15rem;
+  --hex-height: 25rem;
   --rec-width: calc(var(--hex-height) / var(--sqrt3));
-  --hex-gap: 0.5rem;
+  --hex-gap: 1.5rem;
+
+  --hex-border-color: rgb(255, 183, 0);
+  --hex-border-color-hover: cornflowerblue;
+
+  --pce-gap: 1rem;
+  --pce-height: calc(var(--hex-height) - 2 * var(--pce-gap));
+  --pce-width: calc(var(--pce-height) / 2.3 / var(--sqrt3));
+
+  --pce-color11: #00aeff;
+  --pce-color12: red;
+  --pce-color21: #fee000;
+  --pce-color22: green;
+  --pce-color31: magenta;
+  --pce-color32: hsl(239, 70%, 27%);
+
+  --board-color: rgb(68, 68, 68);
+
   position: relative;
   width: 95%;
   height: 95%;
-  border: 2px dotted green;
+  background-color: var(--board-color);
 }
 
 .hex {
@@ -70,15 +149,70 @@
   height: var(--hex-height);
 }
 
+.pce {
+  position: absolute;
+  width: fit-content;
+  height: var(--pce-height);
+  translate: calc(var(--rec-width) / 2 - var(--pce-width) / 2) calc(var(--pce-gap));
+}
+
 .hex:hover .rec {
-  background-color: cornflowerblue;
+  border-top: 0.5rem solid var(--hex-border-color-hover);
+  border-bottom: 0.5rem solid var(--hex-border-color-hover);
+}
+
+.hex.selected .rec {
+  border-top: 0.5rem solid var(--hex-border-color-hover);
+  border-bottom: 0.5rem solid var(--hex-border-color-hover);
 }
 
 .hex .rec {
   position: relative;
   height: var(--hex-height);
   width: var(--rec-width);
-  background-color: hsl(10, 0%, 85%);
+  border-top: 0.5rem solid var(--hex-border-color);
+  border-bottom: 0.5rem solid var(--hex-border-color);
+  /* background-color: hsl(10, 0%, 85%); */
+  user-select: none;
+  display: grid;
+}
+
+.pce .rec {
+  position: relative;
+  height: calc(var(--pce-height));
+  width: var(--pce-width);
+  border: 0.5rem solid var(--board-color);
+  border-radius: var(--pce-width);
+  user-select: none;
+  display: grid;
+  justify-content: center;
+  font-size: x-large;
+  font-weight: bold;
+  color: white;
+  padding-top: var(--pce-gap);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pce .rec2 {
+  position: relative;
+  rotate: 60deg;
+  top: calc(-1 * var(--pce-height));
+}
+
+.pce .rec3 {
+  position: relative;
+  rotate: -60deg;
+  top: calc(-2 * var(--pce-height));
+}
+
+.hex .rec1 {
+  justify-content: center;
+  align-content: center;
+  font-size: xx-large;
+  font-weight: bold;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 10;
 }
 
 .hex .rec2 {
@@ -93,38 +227,86 @@
   top: calc(-2 * var(--hex-height));
 }
 
-.hex1 {
-  top: calc(50% - var(--hex-height) / 2);
-  left: calc(50% - var(--rec-width) / 2);
+.pos11 {
+  top: calc(50% - 2 * var(--hex-height) / 2 - var(--hex-gap) / 2);
+  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
 }
 
-.hex2 {
+.pos12 {
+  top: calc(50% + var(--hex-gap) / 2);
+  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
+}
+
+.pos21 {
   top: calc(50% - 3 * var(--hex-height) / 2 - var(--hex-gap));
   left: calc(50% - var(--rec-width) / 2);
 }
 
-.hex3 {
-  top: calc(50% - 2 * var(--hex-height) / 2 - var(--hex-gap) / 2);
-  left: calc(50% + var(--rec-width) + var(--hex-gap));
+.pos22 {
+  top: calc(50% - var(--hex-height) / 2);
+  left: calc(50% - var(--rec-width) / 2);
 }
 
-.hex4 {
-  top: calc(50% + var(--hex-gap) / 2);
-  left: calc(50% + var(--rec-width) + var(--hex-gap));
-}
-
-.hex5 {
+.pos23 {
   top: calc(50% + var(--hex-height) / 2 + var(--hex-gap));
   left: calc(50% - var(--rec-width) / 2);
 }
 
-.hex6 {
-  top: calc(50% + var(--hex-gap) / 2);
-  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
+.pos31 {
+  top: calc(50% - 2 * var(--hex-height) / 2 - var(--hex-gap) / 2);
+  left: calc(50% + var(--rec-width) + var(--hex-gap));
 }
 
-.hex7 {
-  top: calc(50% - 2 * var(--hex-height) / 2 - var(--hex-gap) / 2);
-  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
+.pos32 {
+  top: calc(50% + var(--hex-gap) / 2);
+  left: calc(50% + var(--rec-width) + var(--hex-gap));
 }
-</style>
+
+.color11 {
+  background-color: var(--pce-color11);
+}
+
+.color12 {
+  background-color: var(--pce-color12);
+}
+
+.color21 {
+  background-color: var(--pce-color21);
+  color: var(--board-color) !important;
+}
+
+.color22 {
+  background-color: var(--pce-color22);
+}
+
+.color31 {
+  background-color: var(--pce-color31);
+}
+
+.color32 {
+  background-color: var(--pce-color32);
+}
+
+.color11::after {
+  content: "4"
+}
+
+.color12::after {
+  content: "2"
+}
+
+.color21::after {
+  content: "5"
+}
+
+.color22::after {
+  content: "1"
+}
+
+.color31::after {
+  content: "6"
+}
+
+.color32::after {
+  content: "3"
+}</style>

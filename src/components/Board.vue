@@ -1,72 +1,89 @@
 <template>
   <div class="wrapper">
     <div class="board" @click="unselect()">
-      <div class="hex pos11" id="hex11" @click="select($event)">
+      <div class="scores">
+        <div class="scores1">
+          <div class="score11">11</div>
+          <div class="score12">12</div>
+          <div class="score13">13</div>
+        </div>
+        <div class="scores2">
+          <div class="score21">21</div>
+          <div class="score22">22</div>
+          <div class="score23">23</div>
+        </div>
+        <div class="scores3">
+          <div class="score31">31</div>
+          <div class="score32">32</div>
+          <div class="score33">33</div>
+        </div>
+      </div>
+      <div class="hex x1 y3" id="hex11" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex pos12" id="hex12" @click="select($event)">
+      <div class="hex x1 y5" id="hex12" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex pos21" id="hex21" @click="select($event)">
+      <div class="hex x2 y2" id="hex21" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex pos22" id="hex22" @click="select($event)">
+      <div class="hex x2 y4" id="hex22" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex pos23" id="hex23" @click="select($event)">
+      <div class="hex x2 y6" id="hex23" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex pos31" id="hex31" @click="select($event)">
+      <div class="hex x3 y3" id="hex31" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex pos32" id="hex32" @click="select($event)">
+      <div class="hex x3 y5" id="hex32" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="pce pos12">
+      <div class="pce x1 y3">
         <div class="rec rec1 color11"></div>
         <div class="rec rec2 color21"></div>
         <div class="rec rec3 color31"></div>
       </div>
-      <div class="pce pos21">
+      <div class="pce x1 y5">
         <div class="rec rec1 color11"></div>
         <div class="rec rec2 color21"></div>
         <div class="rec rec3 color32"></div>
       </div>
-      <div class="pce pos22">
+      <div class="pce x2 y2">
         <div class="rec rec1 color11"></div>
         <div class="rec rec2 color22"></div>
         <div class="rec rec3 color31"></div>
       </div>
-      <div class="pce pos31">
+      <div class="pce x2 y4">
         <div class="rec rec1 color11"></div>
         <div class="rec rec2 color22"></div>
         <div class="rec rec3 color32"></div>
       </div>
-      <div class="pce pos11">
+      <div class="pce x2 y6">
         <div class="rec rec1 color12"></div>
         <div class="rec rec2 color21"></div>
         <div class="rec rec3 color31"></div>
       </div>
-      <div class="pce pos23">
+      <div class="pce x3 y3">
         <div class="rec rec1 color12"></div>
         <div class="rec rec2 color21"></div>
         <div class="rec rec3 color32"></div>
       </div>
-      <div class="pce pos32">
+      <div class="pce x3 y5">
         <div class="rec rec1 color12"></div>
         <div class="rec rec2 color22"></div>
         <div class="rec rec3 color31"></div>
@@ -119,7 +136,7 @@ export default {
   --sqrt3: 1.732051;
   --hex-height: 25rem;
   --rec-width: calc(var(--hex-height) / var(--sqrt3));
-  --hex-gap: 1.5rem;
+  --hex-gap: 2rem;
 
   --hex-border-color: rgb(255, 183, 0);
   --hex-border-color-hover: cornflowerblue;
@@ -227,14 +244,99 @@ export default {
   top: calc(-2 * var(--hex-height));
 }
 
+.posx .rec{
+  border-color: blue !important;
+}
+
+.x0 {
+  left: calc(50% - 3.5*var(--rec-width) - 2*var(--hex-gap));
+}
+
+.x1 {
+  left: calc(50% - 2*var(--rec-width) - var(--hex-gap));
+}
+
+.x2 {
+  left: calc(50% - 0.5*var(--rec-width));
+}
+
+.x3 {
+  left: calc(50% + var(--rec-width) + var(--hex-gap));
+}
+
+.x4 {
+  left: calc(50% + 2.5*var(--rec-width) + 2*var(--hex-gap));
+}
+
+.y0 {
+  top: calc(50% + 1.5*var(--hex-height) + 2*var(--hex-gap));
+}
+
+.y1 {
+  top: calc(50% + var(--hex-height) + 1.5*var(--hex-gap));
+}
+
+.y2 {
+  top: calc(50% + 0.5*var(--hex-height) + var(--hex-gap));
+}
+
+.y3 {
+  top: calc(50% + 0.5*var(--hex-gap));
+}
+
+.y4 {
+  top: calc(50% - 0.5*var(--hex-height));
+}
+
+.y5 {
+  top: calc(50% - var(--hex-height) - 0.5*var(--hex-gap));
+}
+
+.y6 {
+  top: calc(50% - 1.5*var(--hex-height) - var(--hex-gap));
+}
+
+.y7 {
+  top: calc(50% - 2* var(--hex-height) - 3*var(--hex-gap)/2);
+}
+
+.y8 {
+  top: calc(50% - 2.5 * var(--hex-height) - 2*var(--hex-gap));
+}
+
+/* .pos02 {
+  top: calc(50% - var(--hex-height) / 2);
+  left: calc(50% - 3.5*var(--rec-width) - 2*var(--hex-gap));
+}
+
+.pos03 {
+  top: calc(50% + var(--hex-height) / 2 + var(--hex-gap));
+  left: calc(50% - 3.5*var(--rec-width) - 2*var(--hex-gap));
+}
+
+.pos10 {
+  top: calc(50% - 2* var(--hex-height) - 3*var(--hex-gap)/2);
+  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
+}
+
 .pos11 {
-  top: calc(50% - 2 * var(--hex-height) / 2 - var(--hex-gap) / 2);
+  top: calc(50% - var(--hex-height) - var(--hex-gap) / 2);
   left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
 }
 
 .pos12 {
   top: calc(50% + var(--hex-gap) / 2);
   left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
+}
+
+.pos13 {
+  top: calc(50% + var(--hex-height) + 3*var(--hex-gap)/2);
+  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
+}
+
+.pos20 {
+  top: calc(50% - 2.5 * var(--hex-height) - 2*var(--hex-gap));
+  left: calc(50% - var(--rec-width) / 2);
 }
 
 .pos21 {
@@ -252,8 +354,13 @@ export default {
   left: calc(50% - var(--rec-width) / 2);
 }
 
+.pos30 {
+  top: calc(50% - 2 * var(--hex-height) - 1.5*var(--hex-gap));
+  left: calc(50% + var(--rec-width) + var(--hex-gap));
+}
+
 .pos31 {
-  top: calc(50% - 2 * var(--hex-height) / 2 - var(--hex-gap) / 2);
+  top: calc(50% - var(--hex-height) - var(--hex-gap) / 2);
   left: calc(50% + var(--rec-width) + var(--hex-gap));
 }
 
@@ -261,6 +368,21 @@ export default {
   top: calc(50% + var(--hex-gap) / 2);
   left: calc(50% + var(--rec-width) + var(--hex-gap));
 }
+
+.pos33 {
+  top: calc(50% + var(--hex-height) + 1.5*var(--hex-gap));
+  left: calc(50% + var(--rec-width) + var(--hex-gap));
+}
+
+.pos42 {
+  top: calc(50% - var(--hex-height) / 2);
+  left: calc(50% + 2.5*var(--rec-width) + 2*var(--hex-gap));
+}
+
+.pos43 {
+  top: calc(50% + var(--hex-height) / 2 + var(--hex-gap));
+  left: calc(50% + 2.5*var(--rec-width) + 2*var(--hex-gap));
+} */
 
 .color11 {
   background-color: var(--pce-color11);

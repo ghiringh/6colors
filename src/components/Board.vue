@@ -3,19 +3,19 @@
     <div class="board" @click="unselect()">
       <div class="scores">
         <div class="scores1">
-          <div class="score11">11</div>
-          <div class="score12">12</div>
-          <div class="score13">13</div>
+          <div class="score score11 x1 y7">11</div>
+          <div class="score score12 x2 y8">12</div>
+          <div class="score score13 x3 y7">13</div>
         </div>
         <div class="scores2">
-          <div class="score21">21</div>
-          <div class="score22">22</div>
-          <div class="score23">23</div>
+          <div class="score score21 x0 y4">21</div>
+          <div class="score score22 x0 y2">22</div>
+          <div class="score score23 x1 y1">23</div>
         </div>
         <div class="scores3">
-          <div class="score31">31</div>
-          <div class="score32">32</div>
-          <div class="score33">33</div>
+          <div class="score score31 x3 y1">31</div>
+          <div class="score score32 x4 y2">32</div>
+          <div class="score score33 x4 y4">33</div>
         </div>
       </div>
       <div class="hex x1 y3" id="hex11" @click="select($event)">
@@ -118,8 +118,6 @@ export default {
 }
 </script>
 
-<style></style>
-
 <style scoped>
 .wrapper {
   position: absolute;
@@ -153,6 +151,8 @@ export default {
   --pce-color32: hsl(239, 70%, 27%);
 
   --board-color: rgb(68, 68, 68);
+  --font-main-color: white;
+  --font-neg-color: rgb(68, 68, 68);
 
   position: relative;
   width: 95%;
@@ -160,17 +160,29 @@ export default {
   background-color: var(--board-color);
 }
 
-.hex {
-  position: absolute;
-  width: fit-content;
-  height: var(--hex-height);
+.rec {
+  position: relative;
+  user-select: none;
+  display: grid;
 }
 
-.pce {
+.rec2 {
+  rotate: 60deg;
+}
+
+.rec3 {
+  rotate: -60deg;
+}
+
+.hex,
+.pce,
+.score {
   position: absolute;
   width: fit-content;
-  height: var(--pce-height);
-  translate: calc(var(--rec-width) / 2 - var(--pce-width) / 2) calc(var(--pce-gap));
+}
+
+.hex {
+  height: var(--hex-height);
 }
 
 .hex:hover .rec {
@@ -184,68 +196,69 @@ export default {
 }
 
 .hex .rec {
-  position: relative;
   height: var(--hex-height);
   width: var(--rec-width);
   border-top: 0.5rem solid var(--hex-border-color);
   border-bottom: 0.5rem solid var(--hex-border-color);
-  /* background-color: hsl(10, 0%, 85%); */
-  user-select: none;
-  display: grid;
+}
+
+.hex .rec2 {
+  top: calc(-1 * var(--hex-height));
+}
+
+.hex .rec3 {
+  top: calc(-2 * var(--hex-height));
+}
+
+.pce {
+  height: var(--pce-height);
+  translate: calc(var(--rec-width) / 2 - var(--pce-width) / 2) calc(var(--pce-gap));
 }
 
 .pce .rec {
-  position: relative;
   height: calc(var(--pce-height));
   width: var(--pce-width);
   border: 0.5rem solid var(--board-color);
   border-radius: var(--pce-width);
-  user-select: none;
-  display: grid;
   justify-content: center;
-  font-size: x-large;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: white;
+  color: var(--font-main-color);
   padding-top: var(--pce-gap);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .pce .rec2 {
-  position: relative;
-  rotate: 60deg;
   top: calc(-1 * var(--pce-height));
 }
 
 .pce .rec3 {
-  position: relative;
-  rotate: -60deg;
   top: calc(-2 * var(--pce-height));
 }
 
-.hex .rec1 {
+.score {
+  display: flex;
+  width: var(--rec-width);
   justify-content: center;
-  align-content: center;
-  font-size: xx-large;
+  font-size: 4rem;
   font-weight: bold;
-  color: white;
+  color: var(--font-main-color);
+  padding-top: var(--pce-gap);
   font-family: Arial, Helvetica, sans-serif;
-  z-index: 10;
+  z-index: 11;
+  padding: 0;
 }
 
-.hex .rec2 {
-  position: relative;
-  rotate: 60deg;
-  top: calc(-1 * var(--hex-height));
+.scores1 > *{
+  translate: 0 calc(0.75*var(--hex-height));
 }
 
-.hex .rec3 {
-  position: relative;
-  rotate: -60deg;
-  top: calc(-2 * var(--hex-height));
+.scores2 > *{
+  translate: calc(0.29*var(--hex-height)) calc(0.23*var(--hex-height));
 }
 
-.posx .rec{
-  border-color: blue !important;
+.scores3 > *{
+  translate: calc(-0.29*var(--hex-height)) calc(0.23*var(--hex-height));
 }
 
 .x0 {
@@ -304,86 +317,6 @@ export default {
   top: calc(50% - 2.5 * var(--hex-height) - 2*var(--hex-gap));
 }
 
-/* .pos02 {
-  top: calc(50% - var(--hex-height) / 2);
-  left: calc(50% - 3.5*var(--rec-width) - 2*var(--hex-gap));
-}
-
-.pos03 {
-  top: calc(50% + var(--hex-height) / 2 + var(--hex-gap));
-  left: calc(50% - 3.5*var(--rec-width) - 2*var(--hex-gap));
-}
-
-.pos10 {
-  top: calc(50% - 2* var(--hex-height) - 3*var(--hex-gap)/2);
-  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
-}
-
-.pos11 {
-  top: calc(50% - var(--hex-height) - var(--hex-gap) / 2);
-  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
-}
-
-.pos12 {
-  top: calc(50% + var(--hex-gap) / 2);
-  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
-}
-
-.pos13 {
-  top: calc(50% + var(--hex-height) + 3*var(--hex-gap)/2);
-  left: calc(50% - 2 * var(--rec-width) - var(--hex-gap));
-}
-
-.pos20 {
-  top: calc(50% - 2.5 * var(--hex-height) - 2*var(--hex-gap));
-  left: calc(50% - var(--rec-width) / 2);
-}
-
-.pos21 {
-  top: calc(50% - 3 * var(--hex-height) / 2 - var(--hex-gap));
-  left: calc(50% - var(--rec-width) / 2);
-}
-
-.pos22 {
-  top: calc(50% - var(--hex-height) / 2);
-  left: calc(50% - var(--rec-width) / 2);
-}
-
-.pos23 {
-  top: calc(50% + var(--hex-height) / 2 + var(--hex-gap));
-  left: calc(50% - var(--rec-width) / 2);
-}
-
-.pos30 {
-  top: calc(50% - 2 * var(--hex-height) - 1.5*var(--hex-gap));
-  left: calc(50% + var(--rec-width) + var(--hex-gap));
-}
-
-.pos31 {
-  top: calc(50% - var(--hex-height) - var(--hex-gap) / 2);
-  left: calc(50% + var(--rec-width) + var(--hex-gap));
-}
-
-.pos32 {
-  top: calc(50% + var(--hex-gap) / 2);
-  left: calc(50% + var(--rec-width) + var(--hex-gap));
-}
-
-.pos33 {
-  top: calc(50% + var(--hex-height) + 1.5*var(--hex-gap));
-  left: calc(50% + var(--rec-width) + var(--hex-gap));
-}
-
-.pos42 {
-  top: calc(50% - var(--hex-height) / 2);
-  left: calc(50% + 2.5*var(--rec-width) + 2*var(--hex-gap));
-}
-
-.pos43 {
-  top: calc(50% + var(--hex-height) / 2 + var(--hex-gap));
-  left: calc(50% + 2.5*var(--rec-width) + 2*var(--hex-gap));
-} */
-
 .color11 {
   background-color: var(--pce-color11);
 }
@@ -394,7 +327,7 @@ export default {
 
 .color21 {
   background-color: var(--pce-color21);
-  color: var(--board-color) !important;
+  color: var(--font-neg-color) !important;
 }
 
 .color22 {

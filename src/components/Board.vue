@@ -1,127 +1,112 @@
 <template>
   <div class="wrapper">
-    <div class="board" @click="unselect()">
+    <div class="board">
+      <div class="next-piece-section">Next piece</div>
       <div class="scores">
         <div class="scores1">
-          <div class="score score11 x1 y7">11</div>
-          <div class="score score12 x2 y8">12</div>
-          <div class="score score13 x3 y7">13</div>
+          <div class="score x1 y7">11</div>
+          <div class="score x2 y8">12</div>
+          <div class="score x3 y7">13</div>
         </div>
         <div class="scores2">
-          <div class="score score21 x0 y4">21</div>
-          <div class="score score22 x0 y2">22</div>
-          <div class="score score23 x1 y1">23</div>
+          <div class="score x0 y4">21</div>
+          <div class="score x0 y2">22</div>
+          <div class="score x1 y1">23</div>
         </div>
         <div class="scores3">
-          <div class="score score31 x3 y1">31</div>
-          <div class="score score32 x4 y2">32</div>
-          <div class="score score33 x4 y4">33</div>
+          <div class="score x3 y1">31</div>
+          <div class="score x4 y2">32</div>
+          <div class="score x4 y4">33</div>
         </div>
       </div>
-      <div class="hex x1 y3" id="hex11" @click="select($event)">
+      <div class="hex x1 y3" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex x1 y5" id="hex12" @click="select($event)">
+      <div class="hex x1 y5" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex x2 y2" id="hex21" @click="select($event)">
+      <div class="hex x2 y2" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex x2 y4" id="hex22" @click="select($event)">
+      <div class="hex x2 y4" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex x2 y6" id="hex23" @click="select($event)">
+      <div class="hex x2 y6" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex x3 y3" id="hex31" @click="select($event)">
+      <div class="hex x3 y3" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
-      <div class="hex x3 y5" id="hex32" @click="select($event)">
+      <div class="hex x3 y5" @click="select($event)">
         <div class="rec rec1"></div>
         <div class="rec rec2"></div>
         <div class="rec rec3"></div>
       </div>
       <div class="pce x1 y3">
-        <div class="rec rec1 color11"></div>
-        <div class="rec rec2 color21"></div>
-        <div class="rec rec3 color31"></div>
+        <div class="rec rec1 v1"></div>
+        <div class="rec rec2 p1"></div>
+        <div class="rec rec3 n1"></div>
       </div>
       <div class="pce x1 y5">
-        <div class="rec rec1 color11"></div>
-        <div class="rec rec2 color21"></div>
-        <div class="rec rec3 color32"></div>
+        <div class="rec rec1 v1"></div>
+        <div class="rec rec2 p1"></div>
+        <div class="rec rec3 n2"></div>
       </div>
       <div class="pce x2 y2">
-        <div class="rec rec1 color11"></div>
-        <div class="rec rec2 color22"></div>
-        <div class="rec rec3 color31"></div>
+        <div class="rec rec1 v1"></div>
+        <div class="rec rec2 p2"></div>
+        <div class="rec rec3 n1"></div>
       </div>
       <div class="pce x2 y4">
-        <div class="rec rec1 color11"></div>
-        <div class="rec rec2 color22"></div>
-        <div class="rec rec3 color32"></div>
+        <div class="rec rec1 v1"></div>
+        <div class="rec rec2 p2"></div>
+        <div class="rec rec3 n2"></div>
       </div>
       <div class="pce x2 y6">
-        <div class="rec rec1 color12"></div>
-        <div class="rec rec2 color21"></div>
-        <div class="rec rec3 color31"></div>
+        <div class="rec rec1 v2"></div>
+        <div class="rec rec2 p1"></div>
+        <div class="rec rec3 n1"></div>
       </div>
       <div class="pce x3 y3">
-        <div class="rec rec1 color12"></div>
-        <div class="rec rec2 color21"></div>
-        <div class="rec rec3 color32"></div>
+        <div class="rec rec1 v2"></div>
+        <div class="rec rec2 p1"></div>
+        <div class="rec rec3 n2"></div>
       </div>
       <div class="pce x3 y5">
-        <div class="rec rec1 color12"></div>
-        <div class="rec rec2 color22"></div>
-        <div class="rec rec3 color31"></div>
+        <div class="rec rec1 v2"></div>
+        <div class="rec rec2 p2"></div>
+        <div class="rec rec3 n1"></div>
       </div>
-      <div class="pce">
-        <div class="rec rec1 color12"></div>
-        <div class="rec rec2 color22"></div>
-        <div class="rec rec3 color32"></div>
+      <div class="pce next-piece">
+        <div class="rec rec1 v2"></div>
+        <div class="rec rec2 p2"></div>
+        <div class="rec rec3 n2"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  methods: {
-    unselect: function () {
-      document.querySelectorAll('.selected').forEach((element) => {
-        element.classList.remove('selected')
-      })
-      console.log('unselect')
-    },
-    select: function (event) {
-      document.querySelectorAll('.selected').forEach((element) => {
-        element.classList.remove('selected')
-      })
-      console.log('select')
-      const item = event.target.parentElement
-      item.classList.add('selected')
-    },
-  }
-}
+import Game from '../game/game.js'
+export default Game;
 </script>
 
 <style scoped>
 .wrapper {
   position: absolute;
-  inset: 10% 10% 10% 10%;
+  inset: 3% 3% 3% 3%;
   min-width: 400px;
   min-height: 400px;
   border: 2px dotted red;
@@ -132,23 +117,25 @@ export default {
 
 .board {
   --sqrt3: 1.732051;
-  --hex-height: 25rem;
+  --hex-height: min(min(18vh, 18vw),25rem);
   --rec-width: calc(var(--hex-height) / var(--sqrt3));
   --hex-gap: 2rem;
 
+  --hex-border-size: 0.5rem;
   --hex-border-color: rgb(255, 183, 0);
   --hex-border-color-hover: cornflowerblue;
 
   --pce-gap: 1rem;
+  --pce-border-size: var(--hex-border-size);
   --pce-height: calc(var(--hex-height) - 2 * var(--pce-gap));
   --pce-width: calc(var(--pce-height) / 2.3 / var(--sqrt3));
 
-  --pce-color11: #00aeff;
-  --pce-color12: red;
-  --pce-color21: #fee000;
-  --pce-color22: green;
-  --pce-color31: magenta;
-  --pce-color32: hsl(239, 70%, 27%);
+  --pce-v1: #00aeff;
+  --pce-v2: red;
+  --pce-p1: #fee000;
+  --pce-p2: green;
+  --pce-n1: magenta;
+  --pce-n2: hsl(239, 70%, 27%);
 
   --board-color: rgb(68, 68, 68);
   --font-main-color: white;
@@ -158,6 +145,28 @@ export default {
   width: 95%;
   height: 95%;
   background-color: var(--board-color);
+}
+
+.next-piece-section{
+  margin: var(--pce-gap);
+  width: calc(var(--pce-height) + 2*var(--pce-gap));
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--font-main-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pce.next-piece{
+  margin: 0 var(--pce-gap);
+  display: grid;
+  justify-items: center;
+  padding-top: var(--pce-gap);
+  translate: 0;
+  height: calc(var(--pce-height) + 3*var(--pce-gap));
+  width: calc(var(--pce-height) + 2*var(--pce-gap));
+  border: var(--hex-border-size) solid var(--font-main-color);
 }
 
 .rec {
@@ -186,20 +195,20 @@ export default {
 }
 
 .hex:hover .rec {
-  border-top: 0.5rem solid var(--hex-border-color-hover);
-  border-bottom: 0.5rem solid var(--hex-border-color-hover);
+  border-top: var(--hex-border-size) solid var(--hex-border-color-hover);
+  border-bottom: var(--hex-border-size) solid var(--hex-border-color-hover);
 }
 
 .hex.selected .rec {
-  border-top: 0.5rem solid var(--hex-border-color-hover);
-  border-bottom: 0.5rem solid var(--hex-border-color-hover);
+  border-top: var(--hex-border-size) solid var(--hex-border-color-hover);
+  border-bottom: var(--hex-border-size) solid var(--hex-border-color-hover);
 }
 
 .hex .rec {
   height: var(--hex-height);
   width: var(--rec-width);
-  border-top: 0.5rem solid var(--hex-border-color);
-  border-bottom: 0.5rem solid var(--hex-border-color);
+  border-top: var(--hex-border-size) solid var(--hex-border-color);
+  border-bottom: var(--hex-border-size) solid var(--hex-border-color);
 }
 
 .hex .rec2 {
@@ -218,7 +227,7 @@ export default {
 .pce .rec {
   height: calc(var(--pce-height));
   width: var(--pce-width);
-  border: 0.5rem solid var(--board-color);
+  border: var(--pce-border-size) solid var(--board-color);
   border-radius: var(--pce-width);
   justify-content: center;
   font-size: 2.5rem;
@@ -249,15 +258,15 @@ export default {
   padding: 0;
 }
 
-.scores1 > *{
+.scores1>* {
   translate: 0 calc(0.75*var(--hex-height));
 }
 
-.scores2 > *{
+.scores2>* {
   translate: calc(0.29*var(--hex-height)) calc(0.23*var(--hex-height));
 }
 
-.scores3 > *{
+.scores3>* {
   translate: calc(-0.29*var(--hex-height)) calc(0.23*var(--hex-height));
 }
 
@@ -317,51 +326,52 @@ export default {
   top: calc(50% - 2.5 * var(--hex-height) - 2*var(--hex-gap));
 }
 
-.color11 {
-  background-color: var(--pce-color11);
+.v1 {
+  background-color: var(--pce-v1);
 }
 
-.color12 {
-  background-color: var(--pce-color12);
+.v2 {
+  background-color: var(--pce-v2);
 }
 
-.color21 {
-  background-color: var(--pce-color21);
+.p1 {
+  background-color: var(--pce-p1);
   color: var(--font-neg-color) !important;
 }
 
-.color22 {
-  background-color: var(--pce-color22);
+.p2 {
+  background-color: var(--pce-p2);
 }
 
-.color31 {
-  background-color: var(--pce-color31);
+.n1 {
+  background-color: var(--pce-n1);
 }
 
-.color32 {
-  background-color: var(--pce-color32);
+.n2 {
+  background-color: var(--pce-n2);
 }
 
-.color11::after {
+.v1::after {
   content: "4"
 }
 
-.color12::after {
+.v2::after {
   content: "2"
 }
 
-.color21::after {
+.p1::after {
   content: "5"
 }
 
-.color22::after {
+.p2::after {
   content: "1"
 }
 
-.color31::after {
+.n1::after {
   content: "6"
 }
 
-.color32::after {
+.n2::after {
   content: "3"
-}</style>
+}
+</style>

@@ -1,9 +1,9 @@
 <script setup>
-import Board from '../components/Board.vue'
+import Board7 from '../components/Board7.vue'
 </script>
 
 <template>
   <main>
-    <Board />
+    <Board7 />
   </main>
 </template>

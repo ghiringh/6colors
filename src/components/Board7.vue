@@ -118,7 +118,7 @@ export default Game;
 
 .board {
   --sqrt3: 1.732051;
-  --hex-height: min(min(18vh, 18vw), 25rem);
+  --hex-height: min(min(18vh, 18vw), 30rem);
   --rec-width: calc(var(--hex-height) / var(--sqrt3));
   --hex-gap: 0.5rem;
 

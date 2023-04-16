@@ -5,8 +5,6 @@ const NEGATIVE_VALUES = [3, 6]
 const X_MAX = 4
 const Y_MAX = 8
 const BOARD_SIZE = 7
-// const SCORES = [{dir:'v1',hex:[[1,5],[1,3]]},{dir:'v2',hex:[[2,6],[2,4],[2,2]]},{dir:'v3',hex:[[3,5],[3,1]]},
-// {dir:'p1',hex:[[1,5],[2,6]]}]
 
 const pieces = createPieces(VERTICAL_VALUES, POSITIVE_VALUES, NEGATIVE_VALUES)
 

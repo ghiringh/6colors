@@ -71,6 +71,7 @@ function showNewPiece() {
     }
     else {
         document.querySelector('.next-piece-section').classList.add('hidden')
+        showRestartButton()
     }
 }
 
@@ -88,6 +89,8 @@ function shuffle(array) {
 function placeNextPiece(x, y) {
     let pce = document.querySelector('.next-piece')
     pce.classList.remove('next-piece')
+    let pces = document.querySelector('.pieces')
+    pces.append(pce)
     pce.classList.add(x, y)
     board[x[1]][y[1]] = next_piece
 }
@@ -111,7 +114,6 @@ function updateScores() {
     scores.push(getScore([p3, p6], 'n'))
     scores.push(getScore([p1, p4, p7], 'n'))
     scores.push(getScore([p2, p5], 'n'))
-    console.log(scores)
     for (let index = 0; index < scores_placeholders.length; index++) {
         scores_placeholders[index].innerHTML = scores[index]
     }
@@ -141,6 +143,10 @@ function comparePieces(p1, p2, dir) {
     else return true
 }
 
+function showRestartButton() {
+    document.querySelector('.restart-button-section').classList.remove('hidden')
+}
+
 export default {
     methods: {
         select: function (event) {
@@ -160,5 +166,8 @@ export default {
                 }
             }
         },
+        restartGame: function () {
+            this.$router.go()
+        }
     }
 }

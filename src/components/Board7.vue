@@ -1,100 +1,105 @@
 <template>
-  <div class="wrapper">
-    <div class="board">
-      <div class="scores">
-        <div class="score-total-section">Score</div>
-        <div class="score-total">0</div>
-        <div class="scores-v">
-          <div class="score x1 y7">0</div>
-          <div class="score x2 y8">0</div>
-          <div class="score x3 y7">0</div>
-        </div>
-        <div class="scores-p">
-          <div class="score x0 y4">0</div>
-          <div class="score x0 y2">0</div>
-          <div class="score x1 y1">0</div>
-        </div>
-        <div class="scores-n">
-          <div class="score x4 y4">0</div>
-          <div class="score x4 y2">0</div>
-          <div class="score x3 y1">0</div>
-        </div>
+  <div class="score-total-section">
+    <div class="score-total-title">Score</div>
+    <div class="score-total">0</div>
+  </div>
+  <div class="next-piece-section">
+    <div class="next-piece-title">Next piece</div>
+    <div class="pce hidden" id="pce1">
+      <div class="rec rec1"></div>
+      <div class="rec rec2"></div>
+      <div class="rec rec3"></div>
+    </div>
+    <div class="pce hidden" id="pce2">
+      <div class="rec rec1"></div>
+      <div class="rec rec2"></div>
+      <div class="rec rec3"></div>
+    </div>
+    <div class="pce hidden" id="pce3">
+      <div class="rec rec1"></div>
+      <div class="rec rec2"></div>
+      <div class="rec rec3"></div>
+    </div>
+    <div class="pce hidden" id="pce4">
+      <div class="rec rec1"></div>
+      <div class="rec rec2"></div>
+      <div class="rec rec3"></div>
+    </div>
+    <div class="pce hidden" id="pce5">
+      <div class="rec rec1"></div>
+      <div class="rec rec2"></div>
+      <div class="rec rec3"></div>
+    </div>
+    <div class="pce hidden" id="pce6">
+      <div class="rec rec1"></div>
+      <div class="rec rec2"></div>
+      <div class="rec rec3"></div>
+    </div>
+    <div class="pce hidden" id="pce7">
+      <div class="rec rec1"></div>
+      <div class="rec rec2"></div>
+      <div class="rec rec3"></div>
+    </div>
+  </div>
+  <div class="restart-button-section hidden" @click="restartGame()">
+    <div class="restart-button">Start</div>
+  </div>
+  <div class="board">
+    <div class="hexagons">
+      <div class="hex selectable x1 y3" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
       </div>
-      <div class="next-piece-section">Next piece</div>
-      <div class="hexagons">
-        <div class="hex selectable x1 y3" @click="select($event)">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="hex selectable x1 y5" @click="select($event)">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="hex selectable x2 y2" @click="select($event)">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="hex selectable x2 y4" @click="select($event)">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="hex selectable x2 y6" @click="select($event)">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="hex selectable x3 y3" @click="select($event)">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="hex selectable x3 y5" @click="select($event)">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
+      <div class="hex selectable x1 y5" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
       </div>
-      <div class="pieces">
-        <div class="pce hidden" id="pce1">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="pce hidden" id="pce2">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="pce hidden" id="pce3">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="pce hidden" id="pce4">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="pce hidden" id="pce5">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="pce hidden" id="pce6">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
-        <div class="pce hidden" id="pce7">
-          <div class="rec rec1"></div>
-          <div class="rec rec2"></div>
-          <div class="rec rec3"></div>
-        </div>
+      <div class="hex selectable x2 y2" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
       </div>
+      <div class="hex selectable x2 y4" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex selectable x2 y6" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex selectable x3 y3" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+      <div class="hex selectable x3 y5" @click="select($event)">
+        <div class="rec rec1"></div>
+        <div class="rec rec2"></div>
+        <div class="rec rec3"></div>
+      </div>
+    </div>
+    <div class="scores">
+      <div class="scores-v">
+        <div class="score x1 y7">0</div>
+        <div class="score x2 y8">0</div>
+        <div class="score x3 y7">0</div>
+      </div>
+      <div class="scores-p">
+        <div class="score x0 y4">0</div>
+        <div class="score x0 y2">0</div>
+        <div class="score x1 y1">0</div>
+      </div>
+      <div class="scores-n">
+        <div class="score x4 y4">0</div>
+        <div class="score x4 y2">0</div>
+        <div class="score x3 y1">0</div>
+      </div>
+    </div>
+    <div class="pieces">
     </div>
   </div>
 </template>
@@ -105,85 +110,77 @@ export default Game;
 </script>
 
 <style scoped>
-.wrapper {
+.board {
+  background-color: var(--board-color);
+  height: 100%;
+  width: 100%;
+  grid-area: 1 / 2 / 4 /3;
+  position: relative;
+}
+
+/* .hexagons, .scores {
   position: absolute;
-  inset: 3% 3% 3% 3%;
-  min-width: 400px;
-  min-height: 400px;
-  border: 2px dotted red;
-  display: grid;
-  justify-items: center;
+  width: 100%;
+  height: 100%;
+} */
+
+.score-total-section,
+.next-piece-section {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--font-main-color);
+  font-family: Arial, Helvetica, sans-serif;
   align-items: center;
 }
 
-.board {
-  --sqrt3: 1.732051;
-  --hex-height: min(min(18vh, 18vw), 30rem);
-  --rec-width: calc(var(--hex-height) / var(--sqrt3));
-  --hex-gap: 0.5rem;
-
-  --hex-border-size: 0.5rem;
-  --hex-border-color: rgb(255, 183, 0);
-  --hex-border-color-hover: cornflowerblue;
-
-  --pce-gap: 1rem;
-  --pce-border-size: var(--hex-border-size);
-  --pce-height: calc(var(--hex-height) - 2 * var(--pce-gap));
-  --pce-width: calc(var(--pce-height) / 2.3 / var(--sqrt3));
-
-  --pce-v1: #00aeff;
-  --pce-v2: red;
-  --pce-p1: #fee000;
-  --pce-p2: green;
-  --pce-n1: magenta;
-  --pce-n2: hsl(239, 70%, 27%);
-
-  --board-color: rgb(68, 68, 68);
-  --font-main-color: white;
-  --font-neg-color: rgb(68, 68, 68);
-
-  position: relative;
-  width: 95%;
-  height: 95%;
-  background-color: var(--board-color);
+.score-total-section {
+  grid-area: 1 / 1 / 2 / 2;
 }
 
-.score-total-section, .next-piece-section {
-  margin: var(--pce-gap);
-  width: calc(var(--pce-height) + 2*var(--pce-gap));
-  display: flex;
-  justify-content: center;
-  font-size: 2.5rem;
+.next-piece-section,
+.restart-button-section {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.score-total-title,
+.next-piece-title {
+  font-size: 3.5rem;
   font-weight: bold;
-  color: var(--font-main-color);
-  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: var(--pce-gap) 0;
 }
 
-.pce.next-piece, .score-total {
-  margin: 0 var(--pce-gap);
-  display: grid;
-  justify-items: center;
-  padding-top: var(--pce-gap);
-  translate: 0;
+.score-total,
+.pce.next-piece,
+.restart-button {
   height: calc(var(--pce-height) + 3*var(--pce-gap));
-  width: calc(var(--pce-height) + 2*var(--pce-gap));
+  width: calc(var(--pce-height) + 3*var(--pce-gap));
   border: var(--hex-border-size) solid var(--font-main-color);
-}
 
-.score-total {
-  justify-content: center;
-  align-content: center;
   font-size: 8.5rem;
   font-weight: bold;
   color: var(--font-main-color);
   font-family: Arial, Helvetica, sans-serif;
-  margin-bottom: 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pce.next-piece {
+  position: relative;
+  translate: 0;
+}
+
+.restart-button {
+  font-size: 4.5rem;
+  text-transform: uppercase;
 }
 
 .rec {
-  position: relative;
-  user-select: none;
-  display: grid;
+  position: absolute;
 }
 
 .rec2 {
@@ -206,17 +203,6 @@ export default Game;
   height: var(--hex-height);
 }
 
-.hex:hover .rec {
-  border-top: calc(var(--hex-border-size) + 0.3rem) solid var(--hex-border-color-hover);
-  border-bottom: calc(var(--hex-border-size) + 0.3rem) solid var(--hex-border-color-hover);
-  z-index: 100;
-}
-
-/* .hex.selected .rec {
-  border-top: var(--hex-border-size) solid var(--hex-border-color-hover);
-  border-bottom: var(--hex-border-size) solid var(--hex-border-color-hover);
-} */
-
 .hex .rec {
   height: var(--hex-height);
   width: var(--rec-width);
@@ -224,13 +210,12 @@ export default Game;
   border-bottom: var(--hex-border-size) solid var(--hex-border-color);
 }
 
-.hex .rec2 {
-  top: calc(-1 * var(--hex-height));
+.hex:hover .rec {
+  border-top: calc(var(--hex-border-size) + 0.3rem) solid var(--hex-border-color-hover);
+  border-bottom: calc(var(--hex-border-size) + 0.3rem) solid var(--hex-border-color-hover);
+  z-index: 100;
 }
 
-.hex .rec3 {
-  top: calc(-2 * var(--hex-height));
-}
 
 .pce {
   height: var(--pce-height);
@@ -242,20 +227,13 @@ export default Game;
   width: var(--pce-width);
   border: var(--pce-border-size) solid var(--board-color);
   border-radius: var(--pce-width);
+  display: flex;
   justify-content: center;
   font-size: 2.5rem;
   font-weight: bold;
   color: var(--font-main-color);
   padding-top: var(--pce-gap);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.pce .rec2 {
-  top: calc(-1 * var(--pce-height));
-}
-
-.pce .rec3 {
-  top: calc(-2 * var(--pce-height));
 }
 
 .score {
@@ -271,15 +249,15 @@ export default Game;
   padding: 0;
 }
 
-.scores-v>* {
+.scores-v>.score {
   translate: 0 calc(0.75*var(--hex-height));
 }
 
-.scores-p>* {
+.scores-p>.score {
   translate: calc(0.29*var(--hex-height)) calc(0.23*var(--hex-height));
 }
 
-.scores-n>* {
+.scores-n>.score {
   translate: calc(-0.29*var(--hex-height)) calc(0.23*var(--hex-height));
 }
 
@@ -386,5 +364,4 @@ export default Game;
 
 .n3::after {
   content: "3"
-}
-</style>
+}</style>

@@ -1,9 +1,50 @@
 @import './base.css';
 
-html {
-	font-size: 10px;
+:root{
+	--main-color: rgb(255, 183, 0);
+	--dark-background-color: rgb(68, 68, 68);
+	--sqrt3: 1.732051;
+	--hex-height: min(min(18vh, 18vw), 30rem);
+	--rec-width: calc(var(--hex-height) / var(--sqrt3));
+	--hex-gap: 0.5rem;
+  
+	--hex-border-size: 0.5rem;
+	--hex-border-color: rgb(255, 183, 0);
+	--hex-border-color-hover: cornflowerblue;
+  
+	--pce-gap: 1rem;
+	--pce-border-size: var(--hex-border-size);
+	--pce-height: calc(var(--hex-height) - 2 * var(--pce-gap));
+	--pce-width: calc(var(--pce-height) / 2.3 / var(--sqrt3));
+  
+	--pce-v1: #00aeff;
+	--pce-v2: red;
+	--pce-p1: #fee000;
+	--pce-p2: green;
+	--pce-n1: magenta;
+	--pce-n2: hsl(239, 70%, 27%);
+  
+	--board-color: rgb(68, 68, 68);
+	--font-main-color: white;
+	--font-neg-color: rgb(68, 68, 68);
 }
 
-.hidden{
+html {
+	font-size: 10px;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+}
+
+.hidden {
 	display: none !important;
+}
+
+#app {
+	height: 100%;
+	display: grid;
+	grid-template-columns: 5fr;
+	grid-template-rows: 5rem 1fr;
 }

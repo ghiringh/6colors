@@ -4,7 +4,7 @@
 	--main-color: rgb(255, 183, 0);
 	--dark-background-color: rgb(68, 68, 68);
 	--sqrt3: 1.732051;
-	--hex-height: min(min(18vh, 18vw), 30rem);
+	--hex-height: min(min(15vh, 15vw), 30rem);
 	--rec-width: calc(var(--hex-height) / var(--sqrt3));
 	--hex-gap: 0.5rem;
   
@@ -19,10 +19,13 @@
   
 	--pce-v1: #00aeff;
 	--pce-v2: red;
+	--pce-v3: rgb(0, 196, 163);
 	--pce-p1: #fee000;
 	--pce-p2: green;
+	--pce-p3: rgb(187, 106, 0);
 	--pce-n1: magenta;
 	--pce-n2: hsl(239, 70%, 27%);
+	--pce-n3: hsl(281, 100%, 40%);
   
 	--board-color: rgb(68, 68, 68);
 	--font-main-color: white;

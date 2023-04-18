@@ -1,10 +1,10 @@
-const VERTICAL_VALUES = [2, 4]
-const POSITIVE_VALUES = [1, 5]
-const NEGATIVE_VALUES = [3, 6]
+const VERTICAL_VALUES = [1, 4, 9]
+const POSITIVE_VALUES = [2, 5, 8]
+const NEGATIVE_VALUES = [3, 6, 7]
 
 const X_MAX = 4
 const Y_MAX = 8
-const BOARD_SIZE = 7
+const BOARD_SIZE = 19
 
 const pieces = createPieces(VERTICAL_VALUES, POSITIVE_VALUES, NEGATIVE_VALUES)
 
@@ -40,12 +40,19 @@ function createPieces(v_values, p_values, n_values) {
             }
         }
     }
-    //(pieces.splice(0,1)) //TODO delete this line
+    
+    // pieces.splice(6,1)
+    // pieces.splice(2,1)
+    // pieces.splice(0,1)
+    // pieces.splice(0,3)
+    // pieces.splice(3,1)
+    // pieces.splice(5,1)
+    // console.log(pieces)
     return pieces;
 }
 
 var deck = Array.from(pieces)
-shuffle(deck)
+// shuffle(deck)
 
 while (deck.length > BOARD_SIZE) {
     deck.pop()
@@ -63,8 +70,11 @@ function showNewPiece() {
         let vpn = deck.pop()
         let recs = pce.getElementsByClassName('rec')
         recs[0].classList.add('v' + vpn.v)
+        recs[0].innerHTML = vpn.v
         recs[1].classList.add('p' + vpn.p)
+        recs[1].innerHTML = vpn.p
         recs[2].classList.add('n' + vpn.n)
+        recs[2].innerHTML = vpn.n
         pce.classList.add('next-piece')
         pce.classList.remove('hidden')
         next_piece = vpn
@@ -98,25 +108,52 @@ function placeNextPiece(x, y) {
 function updateScores() {
     let scores_placeholders = document.querySelectorAll('.score')
     let scores = []
-    let p1 = [1, 5]
-    let p2 = [1, 3]
-    let p3 = [2, 6]
-    let p4 = [2, 4]
-    let p5 = [2, 2]
-    let p6 = [3, 5]
-    let p7 = [3, 3]
-    scores.push(getScore([p1, p2], 'v'))
-    scores.push(getScore([p3, p4, p5], 'v'))
-    scores.push(getScore([p6, p7], 'v'))
-    scores.push(getScore([p1, p3], 'p'))
-    scores.push(getScore([p2, p4, p6], 'p'))
-    scores.push(getScore([p5, p7], 'p'))
-    scores.push(getScore([p3, p6], 'n'))
-    scores.push(getScore([p1, p4, p7], 'n'))
-    scores.push(getScore([p2, p5], 'n'))
+    let hexs = document.querySelectorAll('.hex')
+    let ps = []
+    hexs.forEach(hex => {
+        let classes = Array.from(hex.classList)
+        let x = classes.find(value => /^x[0-9]/g.test(value))[1]
+        let y = classes.find(value => /^y[0-9]/g.test(value))[1]
+        ps.push([x, y])
+    });
+
+    scores.push(getScore([ps[0], ps[1], ps[2]], 'v'))
+    scores.push(getScore([ps[3], ps[4], ps[5], ps[6]], 'v'))
+    scores.push(getScore([ps[7], ps[8], ps[9], ps[10], ps[11]], 'v'))
+    scores.push(getScore([ps[12], ps[13], ps[14], ps[15]], 'v'))
+    scores.push(getScore([ps[16], ps[17], ps[18]], 'v'))
+
+    scores.push(getScore([ps[2], ps[6], ps[11]], 'p'))
+    scores.push(getScore([ps[1], ps[5], ps[10], ps[15]], 'p'))
+    scores.push(getScore([ps[0], ps[4], ps[9], ps[14], ps[18]], 'p'))
+    scores.push(getScore([ps[3], ps[8], ps[13], ps[17]], 'p'))
+    scores.push(getScore([ps[7], ps[12], ps[16]], 'p'))
+
+    scores.push(getScore([ps[11], ps[15], ps[18]], 'n'))
+    scores.push(getScore([ps[6], ps[10], ps[14], ps[17]], 'n'))
+    scores.push(getScore([ps[2], ps[5], ps[9], ps[13], ps[16]], 'n'))
+    scores.push(getScore([ps[1], ps[4], ps[8], ps[12]], 'n'))
+    scores.push(getScore([ps[0], ps[3], ps[7]], 'n'))
+
+    let gradient = []
+
     for (let index = 0; index < scores_placeholders.length; index++) {
-        scores_placeholders[index].innerHTML = scores[index]
+        let sp = scores_placeholders[index]
+        let score = scores[index]
+        sp.innerHTML = score
+        if (score > 0) {
+            let x = Array.from(sp.classList).find(value => /^x[0-9]/g.test(value))
+            let y = Array.from(sp.classList).find(value => /^y[0-9]/g.test(value))
+            let pce = document.querySelector('.pce.' + x + '.' + y)
+            let dir = Array.from(sp.parentElement.classList).find(value => /^scores-[v,p,n]/g.test(value))[7]
+            let rec = pce.querySelector('.rec' + dir)
+            let color = Array.from(rec.classList).find(value => /^[v,p,n][0-9]/g.test(value))
+            sp.classList.add(color)
+            gradient.push({ 'color': color[1], 'score': score })
+        }
     }
+    // console.log(gradient)
+
     main_score = scores.reduce((a, b) => a + b, 0)
     document.querySelector('.score-total').innerHTML = main_score
 }

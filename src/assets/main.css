@@ -12,20 +12,20 @@
 	--hex-border-color: rgb(255, 183, 0);
 	--hex-border-color-hover: cornflowerblue;
   
-	--pce-gap: 1rem;
+	--pce-gap: 0.8rem;
 	--pce-border-size: var(--hex-border-size);
 	--pce-height: calc(var(--hex-height) - 2 * var(--pce-gap));
-	--pce-width: calc(var(--pce-height) / 2.3 / var(--sqrt3));
+	--pce-width: calc(var(--pce-height) / 2 / var(--sqrt3));
   
-	--pce-v1: #00aeff;
-	--pce-v2: red;
-	--pce-v3: rgb(0, 196, 163);
-	--pce-p1: #fee000;
-	--pce-p2: green;
-	--pce-p3: rgb(187, 106, 0);
-	--pce-n1: magenta;
-	--pce-n2: hsl(239, 70%, 27%);
-	--pce-n3: hsl(281, 100%, 40%);
+	--pce-color1: red;
+	--pce-color2: green;
+	--pce-color3: hsl(239, 70%, 27%);
+	--pce-color4: rgb(130, 223, 0);
+	--pce-color5: rgb(255, 123, 0);
+	--pce-color6: hsl(281, 100%, 40%);
+	--pce-color7: #00aeff;
+	--pce-color8: magenta;
+	--pce-color9: #fee000;
   
 	--board-color: rgb(68, 68, 68);
 	--font-main-color: white;

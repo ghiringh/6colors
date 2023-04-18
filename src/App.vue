@@ -5,7 +5,6 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <nav>
-      <RouterLink to="/board7">Board7</RouterLink>
       <RouterLink to="/">Board19</RouterLink>
     </nav>
   </header>

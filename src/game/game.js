@@ -40,19 +40,11 @@ function createPieces(v_values, p_values, n_values) {
             }
         }
     }
-    
-    // pieces.splice(6,1)
-    // pieces.splice(2,1)
-    // pieces.splice(0,1)
-    // pieces.splice(0,3)
-    // pieces.splice(3,1)
-    // pieces.splice(5,1)
-    // console.log(pieces)
     return pieces;
 }
 
 var deck = Array.from(pieces)
-// shuffle(deck)
+shuffle(deck)
 
 while (deck.length > BOARD_SIZE) {
     deck.pop()

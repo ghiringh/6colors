@@ -6,15 +6,17 @@ const X_MAX = 4
 const Y_MAX = 8
 const BOARD_SIZE = 19
 
-const pieces = createPieces(VERTICAL_VALUES, POSITIVE_VALUES, NEGATIVE_VALUES)
+const pieces = initPieces(VERTICAL_VALUES, POSITIVE_VALUES, NEGATIVE_VALUES)
 
-var board = createBoard(X_MAX, Y_MAX);
+var board = initBoard(X_MAX, Y_MAX);
 
 var next_piece = {};
 
 var main_score = 0;
 
-function createBoard(x_max, y_max) {
+var deck = initDeck()
+
+function initBoard(x_max, y_max) {
     let board = []
     for (let x = 0; x <= x_max; x++) {
         let col = []
@@ -26,7 +28,7 @@ function createBoard(x_max, y_max) {
     return board;
 }
 
-function createPieces(v_values, p_values, n_values) {
+function initPieces(v_values, p_values, n_values) {
     let pieces = []
     for (let v = 0; v < v_values.length; v++) {
         for (let p = 0; p < p_values.length; p++) {
@@ -43,19 +45,18 @@ function createPieces(v_values, p_values, n_values) {
     return pieces;
 }
 
-var deck = Array.from(pieces)
-shuffle(deck)
-
-while (deck.length > BOARD_SIZE) {
-    deck.pop()
+function initDeck() {
+    let deck = Array.from(pieces)
+    shuffle(deck)
+    while (deck.length > BOARD_SIZE) {
+        deck.pop()
+    }
+    return deck;
 }
-
-document.addEventListener("DOMContentLoaded", function (event) {
-    showNewPiece()
-});
 
 
 function showNewPiece() {
+    document.querySelector('.next-piece-section').classList.remove('hidden')
     if (deck.length > 0) {
         let i = deck.length
         let pce = document.getElementById('pce' + i)
@@ -176,6 +177,36 @@ function showRestartButton() {
     document.querySelector('.restart-button-section').classList.remove('hidden')
 }
 
+function hideRestartButton() {
+    document.querySelector('.restart-button-section').classList.add('hidden')
+}
+
+function resetPieces() {
+    let pces = document.querySelectorAll('.pce')
+    for (let index = 0; index < pces.length; index++) {
+        let pce = pces[index];
+        pce.classList = "pce hidden"
+        document.querySelector('.next-piece-section').append(pce)
+    }
+    let hexs = document.querySelectorAll('.hex')
+    hexs.forEach(hex => {
+        hex.classList.add('selectable')
+    });
+}
+
+function resetColors(){
+    let dirs = ['v','p','n']
+    let cns = [1,2,3,4,5,6,7,8,9]
+    
+    dirs.forEach(dir => {
+        cns.forEach(cn => {
+            document.querySelectorAll('.'+dir+cn).forEach(el => {
+                el.classList.remove(dir+cn)
+            })
+        });
+    });
+}
+
 export default {
     methods: {
         select: function (event) {
@@ -196,7 +227,15 @@ export default {
             }
         },
         restartGame: function () {
-            this.$router.go()
+            board = initBoard(X_MAX, Y_MAX)
+            next_piece = {}
+            main_score = 0
+            deck = initDeck()
+            resetColors()
+            resetPieces()
+            updateScores()
+            hideRestartButton()
+            showNewPiece()
         }
     }
 }

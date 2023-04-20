@@ -3,7 +3,7 @@
       <div class="score-total-title title">Score</div>
       <div class="score-total">0</div>
     </div>
-    <div class="next-piece-section section">
+    <div class="next-piece-section section hidden">
       <div class="next-piece-title title">Next piece</div>
       <div class="pce hidden" id="pce1">
         <div class="rec recv"></div>
@@ -101,7 +101,7 @@
         <div class="rec recn"></div>
       </div>
     </div>
-    <div class="restart-button-section section hidden" @click="restartGame()">
+    <div class="restart-button-section section" @click="restartGame()">
       <div class="restart-button-title title">Let's Play</div>
       <div class="restart-button">Start</div>
     </div>

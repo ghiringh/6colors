@@ -1,6 +1,7 @@
-const VERTICAL_VALUES = [1, 4, 9]
-const POSITIVE_VALUES = [2, 5, 8]
-const NEGATIVE_VALUES = [3, 6, 7]
+const VALUES = shuffle([1,2,3,4,5,6,7,8,9])
+const VERTICAL_VALUES = VALUES.splice(0,3)
+const POSITIVE_VALUES = VALUES.splice(0,3)
+const NEGATIVE_VALUES = VALUES.splice(0,3)
 
 const X_MAX = 4
 const Y_MAX = 8

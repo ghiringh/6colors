@@ -16,14 +16,18 @@ import { RouterLink, RouterView } from 'vue-router'
 @media screen, print {
   header {
     grid-area: 1 / 1 / 2 / 2;
-    background-color: var(--main-color);
-    color: var(--font-main-color);
+    background-color: var(--header-background-color);
+    color: var(--font-neg-color);
+    display: grid;
+    justify-items: center;
   }
 
   nav {
     height: 100%;
+    width: 100%;
+    max-width: 1400px;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     font-size: 2.5rem;
     font-weight: bold;
@@ -50,13 +54,6 @@ import { RouterLink, RouterView } from 'vue-router'
     max-width: 1400px;
   }
 }
-
-/* @media (min-width: 1100px) {
-  main {
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: 1fr 1fr 2fr;
-  }
-} */
 
 @media (orientation: landscape) {
   main {

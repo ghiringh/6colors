@@ -2,8 +2,6 @@
 
 @media screen, print {
 	:root {
-		--main-color: rgb(255, 183, 0);
-		--dark-background-color: rgb(68, 68, 68);
 		--sqrt3: 1.732051;
 		--hex-height: max(min(100vh/6.4, 100vw/6), 60px);
 		--rec-width: calc(var(--hex-height) / var(--sqrt3));
@@ -15,7 +13,7 @@
 		--hex-border-radius: 0.5rem;
 
 		--pce-gap: max(0.3rem,min(0.6vh,0.6vw));
-		--pce-border-size: var(--hex-border-size);
+		--pce-border-size: max(0.2rem,min(0.5vh,0.5vw));
 		--pce-border-color: var(--board-color);
 		--pce-height: calc(var(--hex-height) - 2 * var(--pce-gap));
 		--pce-width: calc(var(--pce-height) / 2 / var(--sqrt3));
@@ -28,11 +26,12 @@
 		--pce-color6: hsl(281, 100%, 40%);
 		--pce-color7: #00aeff;
 		--pce-color8: magenta;
-		--pce-color9: #fee000;
+		--pce-color9: #ebd003;
 
 		--board-color: rgb(231, 231, 231);
+		--header-background-color: var(--hex-border-color);
 		--font-main-color: var(--hex-border-color);
-		--font-neg-color: white;
+		--font-neg-color: var(--board-color);
 		--font-family: Helvetica, Arial, sans-serif;
 		--font-size-xxl: max(3.5rem,min(8vh,8vw));
 		--font-size-xl: max(1.5rem,min(4vh,4vw));

@@ -17,7 +17,7 @@ import { RouterLink, RouterView } from 'vue-router'
   header {
     grid-area: 1 / 1 / 2 / 2;
     background-color: var(--main-color);
-    color: var(--dark-background-color);
+    color: var(--font-main-color);
   }
 
   nav {
@@ -27,7 +27,7 @@ import { RouterLink, RouterView } from 'vue-router'
     align-items: center;
     font-size: 2.5rem;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-family);
     gap: 2.5rem;
     margin-right: 2.5rem;
   }
@@ -42,26 +42,27 @@ import { RouterLink, RouterView } from 'vue-router'
 
   main {
     grid-area: 2 / 1 / 3 / 2;
-    background-color: var(--dark-background-color);
     display: grid;
     justify-items: center;
     align-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 3fr;
+    max-width: 1400px;
   }
 }
 
-@media (min-width: 1000px) {
+/* @media (min-width: 1100px) {
   main {
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 1fr 2fr;
   }
-}
+} */
 
 @media (orientation: landscape) {
   main {
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 1fr;
+    justify-self: center;
   }
 }
 </style>

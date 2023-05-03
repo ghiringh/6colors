@@ -10,7 +10,7 @@
 		--hex-border-size: max(0.2rem,min(0.3vh,0.3vw));
 		--hex-border-color: rgb(48, 48, 48);
 		--hex-border-color-hover: cornflowerblue;
-		--hex-border-radius: 0.5rem;
+		--hex-border-radius: 0rem;
 
 		--pce-gap: max(0.3rem,min(0.6vh,0.6vw));
 		--pce-border-size: max(0.2rem,min(0.5vh,0.5vw));

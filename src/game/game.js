@@ -1,7 +1,7 @@
-const VALUES = shuffle([1,2,3,4,5,6,7,8,9])
-const VERTICAL_VALUES = VALUES.splice(0,3)
-const POSITIVE_VALUES = VALUES.splice(0,3)
-const NEGATIVE_VALUES = VALUES.splice(0,3)
+const VALUES = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9])
+const VERTICAL_VALUES = VALUES.splice(0, 3)
+const POSITIVE_VALUES = VALUES.splice(0, 3)
+const NEGATIVE_VALUES = VALUES.splice(0, 3)
 
 const X_MAX = 4
 const Y_MAX = 8
@@ -16,6 +16,8 @@ var next_piece = {};
 var main_score = 0;
 
 var deck = initDeck()
+
+const style = (node, styles) => Object.keys(styles).forEach(key => node.style[key] = styles[key])
 
 function initBoard(x_max, y_max) {
     let board = []
@@ -129,7 +131,7 @@ function updateScores() {
     scores.push(getScore([ps[1], ps[4], ps[8], ps[12]], 'n'))
     scores.push(getScore([ps[0], ps[3], ps[7]], 'n'))
 
-    let gradient = []
+    let gradient = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     for (let index = 0; index < scores_placeholders.length; index++) {
         let sp = scores_placeholders[index]
@@ -143,13 +145,38 @@ function updateScores() {
             let rec = pce.querySelector('.rec' + dir)
             let color = Array.from(rec.classList).find(value => /^[v,p,n][0-9]/g.test(value))
             sp.classList.add(color)
-            gradient.push({ 'color': color[1], 'score': score })
+            gradient[color[1] - 1] += score
         }
     }
-    // console.log(gradient)
 
+    var score_total = document.querySelector('.score-total')
     main_score = scores.reduce((a, b) => a + b, 0)
-    document.querySelector('.score-total').innerHTML = main_score
+    score_total.innerHTML = main_score
+
+    style(score_total, {
+        'background-image': 'none',
+        'background-position': '0px 0px',
+        'border-image': 'none'
+    })
+
+    let gradient_sum = gradient.reduce((a, b) => a + b, 0)
+    let cgs = ''
+    if (gradient_sum > 0) {
+        let pct_sum = 0
+        for (let i = 0; i < gradient.length; i++) {
+            gradient[i] = gradient[i] / gradient_sum * 100;
+            if(gradient[i]>0){
+                cgs += 'var(--pce-color' + (i+1) + ') ' + pct_sum + '% ' + (pct_sum+gradient[i]) +'%,'
+                pct_sum += gradient[i]
+            }    
+        }
+    }
+
+    style(score_total, {
+        'background-image': 'repeating-conic-gradient(from 0deg at calc(var(--pce-height) - 1*var(--pce-gap)) calc(var(--pce-height) - 1*var(--pce-gap)), transparent 0%, transparent 75%, var(--board-color) 75%, var(--board-color) 100%), conic-gradient('+cgs.slice(0, -1)+')',
+        'background-position': 'calc(1.5*var(--pce-gap)) calc(1.5*var(--pce-gap)), 0px 0px',
+        'border-image': 'conic-gradient('+cgs.slice(0, -1)+') 1'
+    })
 }
 
 function getScore(pieces, dir) {
@@ -195,14 +222,14 @@ function resetPieces() {
     });
 }
 
-function resetColors(){
-    let dirs = ['v','p','n']
-    let cns = [1,2,3,4,5,6,7,8,9]
-    
+function resetColors() {
+    let dirs = ['v', 'p', 'n']
+    let cns = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
     dirs.forEach(dir => {
         cns.forEach(cn => {
-            document.querySelectorAll('.'+dir+cn).forEach(el => {
-                el.classList.remove(dir+cn)
+            document.querySelectorAll('.' + dir + cn).forEach(el => {
+                el.classList.remove(dir + cn)
             })
         });
     });
